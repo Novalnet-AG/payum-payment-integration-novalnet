@@ -1,0 +1,54 @@
+{% extends layout ?: "@PayumCore/layout.html.twig" %}
+
+{% block payum_body %}
+    {{ parent() }}
+    <style>
+        .nn-sepa-form input {
+            height: 23px;
+            background-color: white;
+            border: 1px solid rgb(214 214 214);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, sans-serif;
+            font-size: 0.9375rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            color: #000;
+        }
+        .nn-sepa-form {
+           width: 25%;
+        }
+        @media only screen and (max-device-width: 999px) {
+            .nn-sepa-form {
+                width: 90%;
+               display: block;
+               margin: auto;
+            }
+        }
+        .nn-label {
+            margin-bottom: 10px;
+        }
+    </style>
+    <form action="{{ actionUrl|default('') }}" method="POST">
+        <h1>DIRECT DEBIT SEPA</h1>
+        <div class="nn-sepa-form">
+            <div class="nn-label">
+                <label for="nn_sepa_iban">IBAN</label>
+            </div>
+            <div class="nn-input">
+                <input type="text" id="nn_sepa_iban" name="nn_sepa_iban" /></br></br>
+            </div>
+        </div>
+        <script src="https://cdn.novalnet.de/js/v2/NovalnetUtility.js"></script>
+        <button id="submit_payment_form" type="submit">Submit Payment</button>
+    </form>
+{% endblock %}
+
+{% block payum_javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+        });
+    </script>
+{% endblock %}
