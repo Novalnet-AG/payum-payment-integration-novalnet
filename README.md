@@ -203,7 +203,7 @@ class NovalnetRefundController extends PayumController
 For more information about payment integration see the [developer portal](https://developer.novalnet.de/).
 Please find the relevant documentation about payment integration there.
 
-Here's you may want to modify a `payment_done` route.
+Here you may want to modify a `payment_done` route.
 The payer will be redirected to the controller once the payment is done, regardless of the payment status.
 Read a [dedicated chapter](https://github.com/Payum/Payum/blob/master/docs/examples/done-script.md) about how the payment done controller may look like.
 
