@@ -1,6 +1,6 @@
 # Payum Payment Integration by Novalnet
 
-Payum is one of the most popular bug-free solution that has over 1 000 000 downloads already. It is friendly for all top PHP frameworks and was successfully installed and tested by thousands of developers worldwide. Reduce Your Development Time with Payum integrating more than 50 payment services simultaneously.
+Payum is one of the most popular bug-free solution that was downloaded by one million users. It is compatible with all top PHP frameworks and used by wide range of developers worldwide. Faster integration and deployment of over 50 payment services simultaneously.
 
 ## Advantages
 -   Easy configuration for all payment methods
@@ -42,8 +42,8 @@ Payum is one of the most popular bug-free solution that has over 1 000 000 downl
 
 ##  Installation
 
-The preferred way to install the library is using [composer](http://getcomposer.org/).
-Run composer require to add dependencies to _composer.json_:
+The preferred way to install the library is using a [composer](http://getcomposer.org/).
+Run the composer required to add dependencies to _composer.json_:
 
 ```bash
 composer require novalnet/payum php-http/guzzle6-adapter
@@ -200,11 +200,11 @@ class NovalnetRefundController extends PayumController
 
 ```
 
-For more information about payment integration see the [developer portal](https://developer.novalnet.de/)
-Please find the relevant documentation about payment integration
+For more information about payment integration see the [developer portal](https://developer.novalnet.de/).
+Please find the relevant documentation about payment integration there.
 
 Here's you may want to modify a `payment_done` route.
-It is a controller where the payer will be redirected after the payment is done, whenever it is success failed or pending.
+The payer will be redirected to the controller once the payment is done, regardless of the payment status.
 Read a [dedicated chapter](https://github.com/Payum/Payum/blob/master/docs/examples/done-script.md) about how the payment done controller may look like.
 
 ## Technical support through Novalnet
