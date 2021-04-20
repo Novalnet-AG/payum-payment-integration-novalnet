@@ -1,6 +1,6 @@
 # Payum Payment Integration by Novalnet
 
-Payum is one of the most popular bug-free solution that was downloaded by one million users. It is compatible with all top PHP frameworks and used by wide range of developers worldwide. Faster integration and deployment of over 50 payment services simultaneously.
+Payum is one of the most popular bug-free solution that was downloaded by one million users. It is compatible with all top PHP frameworks and used by wide range of developers worldwide. Faster integration and deployment of over 50 payment services can be done simultaneously.
 
 ## Advantages
 -   Easy configuration for all payment methods
@@ -32,7 +32,7 @@ Payum is one of the most popular bug-free solution that was downloaded by one mi
 -   Multibanco
 
 ## Key features
-*   Secure SSL- encoded gateways
+*   Secure SSL-encoded gateways
 *   Seamless and fast integration of the payment module
 *   Credit Card with 3D Secure
 *   On-hold transaction configuration in the shop admin panel
