@@ -1,0 +1,97 @@
+{% extends layout ?: "@PayumCore/layout.html.twig" %}
+
+{% block payum_body %}
+    {{ parent() }}
+    <style>
+      #nn-apple-pay {
+        display: none;
+        width: 250px;
+        height: 40px;
+        padding: 10px 0;
+        cursor: pointer;
+        -webkit-appearance: -apple-pay-button;
+        -apple-pay-button-type: buy;
+      }
+    </style>
+
+    <button id="nn-apple-pay"></button>
+    <input type="hidden" id="payment_data" value = {{payment_data|escape('html_attr')}}>
+    <input type="hidden" id="action_url" value = {{action_url}}>
+    <input type="hidden" id="after_url" value = {{after_url}}>
+    <script src="https://cdn.novalnet.de/js/v2/NovalnetUtility.js"></script>
+{% endblock %}
+
+{% block payum_javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+        var isApplePayAvailable = NovalnetUtility.isApplePayAllowed();
+
+        // Only if Apple Pay is available, we display the button for processing
+        if (isApplePayAvailable) {
+           document.getElementById('nn-apple-pay').style.display = 'block';
+        }
+
+        document.getElementById('nn-apple-pay').addEventListener('click', invokeApplePayRequest);
+
+        function invokeApplePayRequest() {
+
+            var payment_data = JSON.parse($('#payment_data').val());
+
+            NovalnetUtility.setClientKey(payment_data.client_key);
+
+            // Preparing the Apple request
+            var requestData = {
+                transaction: {
+                  amount: payment_data.transaction.amount,
+                  currency: payment_data.transaction.currency
+                },
+                merchant: {
+                  country_code: payment_data.customer.billing.country_code
+                },
+                callback: {
+                  on_completion: function (responseData, processedStatus) {
+
+                    // Handle response here and setup the processedStatus
+                    if (responseData.result && responseData.result.status) {
+
+                      // Only on success, we proceed further with the booking
+                      if (responseData.result.status == 'SUCCESS') {
+
+                        // Sending the token and amount to Novalnet server for the booking
+                        $.post($('#action_url').val(), {nn_applepay_token: responseData.transaction.token, amount: responseData.transaction.amount}).done(function(processedResult) {
+
+                           var result = processedResult.details.nn_response.result;
+
+                           if (result.status_code == '100') {
+                             // "SUCCESS" value will dismiss with a payment sheet with "Done" message
+                             processedStatus('SUCCESS');                             
+                           } else {
+                             // "ERROR" value will dismiss with a payment sheet with "Payment not completed" message
+                             processedStatus('ERROR');
+                             alert(result.status_text);                             
+                           }
+                           
+                           window.location.replace($('#after_url').val());
+
+                        });
+                      } else {
+                        // Upon failure, displaying the error text
+                        if (responseData.result.status_text) {
+                          alert(responseData.result.status_text);
+                        }
+                      }
+                    }
+                  }
+                }
+            };
+
+            // Setting up the payment request to initiate the Apple Payment sheet
+            NovalnetUtility.processApplePay(requestData);
+        }
+    });
+    </script>
+{% endblock %}

@@ -1,0 +1,28 @@
+{
+    "name": "novalnet/payum",
+    "type": "project",
+    "description": "The Payum extension. Rapid extensino development",
+    "keywords": ["payment"],
+    "homepage": "https://www.novalnet.de/",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Novalnet AG",
+            "homepage": "https://www.novalnet.de"
+        }
+    ],
+    "require": {
+        "payum/core": "^1.5"
+    },
+    "require-dev": {
+        "payum/core": "^1.5",
+        "php-http/guzzle6-adapter": "^1.0"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "autoload": {
+        "psr-0": { "Payum\\Novalnet": "" }
+    },
+    "target-dir": "Payum/Novalnet"
+}
