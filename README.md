@@ -30,6 +30,7 @@ Payum is one of the most popular bug-free solution that was downloaded by one mi
 -   Postfinance card
 -   Bancontact
 -   Multibanco
+-   Apple Pay
 
 ## Key features
 *   Secure SSL-encoded gateways
